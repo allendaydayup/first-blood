@@ -11,6 +11,8 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\EntryForm;
 use yii\imagine\Image;
+use yii\web\Response;
+use yii\base\ErrorException;
 
 class SiteController extends Controller
 {
@@ -292,12 +294,94 @@ class SiteController extends Controller
     }
 
 
-    public function actionA()
+    public function actionUserIp()
     {
         // $headers 是一个 yii\web\HeaderCollection 对象
         $headers = Yii::$app->request;
 
         // 返回 Accept header 值
         echo $headers->userIP;
+    }
+
+    public function actionResponse()
+    {
+        //throw new \yii\web\NotFoundHttpException;
+        //throw new \yii\web\HttpException(404);
+        //$a = Yii::$app->response;
+
+        //echo "<pre>";
+        //print_r($a);
+
+        //Yii::$app->response->content = 'hello world!';
+        //$a->format = \yii\web\Response::FORMAT_XML;
+        //$a->data = ['message' => 'hello world!'];
+
+        //\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        //return [
+        //    'message' => 'hello world!',
+        //    'code' => 200,
+        //];
+
+//        return \Yii::createObject([
+//            'class' => 'yii\web\Response',
+//            'format' => \yii\web\Response::FORMAT_JSON,
+//            'data' => [
+//                'message' => 'hello world!',
+//                'code' => 200,
+//            ],
+//        ]);
+
+//        return $this->redirect('http://www.baidu.com');
+//        return \Yii::$app->response->sendFile(Yii::$app->basePath.'/composer.json');
+//        return \Yii::$app->response->sendFile(Yii::$app->basePath.'/composer.json')->send();
+    }
+
+    public function actionSession()
+    {
+        $session = Yii::$app->session;
+//        if($session->isActive){
+//            echo 1;
+//        }else{
+//            echo 2;
+//        };
+//        // 开启session
+//        $session->open();
+//        // 关闭session
+//        $session->close();
+//        // 销毁session中所有已注册的数据
+//        $session->destroy();
+
+        // 获取session中的变量值，以下用法是相同的：
+        $language = $session->get('language');
+        $language = $session['language'];
+        $language = isset($_SESSION['language']) ? $_SESSION['language'] : null;
+
+        // 设置一个session变量，以下用法是相同的：
+        $session->set('language', 'en-US');
+        $session['language'] = 'en-US';
+        $_SESSION['language'] = 'en-US';
+
+        // 删除一个session变量，以下用法是相同的：
+        $session->remove('language');
+        unset($session['language']);
+        unset($_SESSION['language']);
+
+        // 检查session变量是否已存在，以下用法是相同的：
+        if ($session->has('language')) {}
+        if (isset($session['language'])) {}
+        if (isset($_SESSION['language'])) {}
+
+        $session->setFlash('posted', 'one two three');
+        echo $session->getFlash('posted');
+        echo $session->hasFlash('posted');
+    }
+
+    public function actionErrorException()
+    {
+        try {
+
+        } catch (ErrorException $e) {
+            Yii::warning('0不能做被除数');
+        }
     }
 }

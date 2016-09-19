@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae92411d5c44684b29b68a30c423e14b",
-    "content-hash": "b3c54b984704e634a8929c6f353bf330",
+    "hash": "80b21b74445701f096bf568787942ebc",
+    "content-hash": "0b560f0e11049a6dc1044458b92c06ec",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -160,6 +160,44 @@
                     "package.json"
                 ]
             }
+        },
+        {
+            "name": "bower-asset/summernote",
+            "version": "v0.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/summernote/summernote.git",
+                "reference": "9a5e5abe214f194d920b219c409322dfa7688c8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/summernote/summernote/zipball/9a5e5abe214f194d920b219c409322dfa7688c8c",
+                "reference": "9a5e5abe214f194d920b219c409322dfa7688c8c",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=3.0.1",
+                "bower-asset/jquery": ">=1.9.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "./dist/summernote.js",
+                    "./dist/summernote.css"
+                ],
+                "bower-asset-ignore": [
+                    "**/.*",
+                    "Gruntfile.js",
+                    "MAINTAIN.md",
+                    "grunts",
+                    "node_modules",
+                    "bower_components",
+                    "test"
+                ]
+            },
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "bower-asset/yii2-pjax",
@@ -350,6 +388,50 @@
                 "image processing"
             ],
             "time": "2013-07-10 17:25:36"
+        },
+        {
+            "name": "piaoyii/yii2-summernote",
+            "version": "1.0.0-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/piaoyii/yii2-summernote.git",
+                "reference": "ba7937d7cbf2cf2a663d34150db5e32022c592e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/piaoyii/yii2-summernote/ba7937d7cbf2cf2a663d34150db5e32022c592e1.zip",
+                "reference": "ba7937d7cbf2cf2a663d34150db5e32022c592e1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/summernote": "0.8.2",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii\\summernote\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "piaoyii",
+                    "email": "admin@piaoyii.com"
+                }
+            ],
+            "description": "YII2的 summernote 扩展",
+            "keywords": [
+                "summernote",
+                "yii2"
+            ],
+            "time": "2016-09-18 07:46:50"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1003,7 +1085,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "piaoyii/yii2-summernote": 10
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

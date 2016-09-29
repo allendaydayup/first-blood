@@ -33,9 +33,11 @@ $config = [
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
+            //'flushInterval' => 1,   // default is 1000 消息记录
             'targets' => [
                 [
                     'class' => 'yii\log\FileTarget',
+                    //'exportInterval' => 1,  // default is 1000 消息导出
                     'levels' => ['error', 'warning'],
                 ],
             ],

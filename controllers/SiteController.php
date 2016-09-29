@@ -379,9 +379,53 @@ class SiteController extends Controller
     public function actionErrorException()
     {
         try {
-
+            10/0;
         } catch (ErrorException $e) {
             Yii::warning('0不能做被除数');
         }
+    }
+
+
+    public function actionSql()
+    {
+        $sql = 'select * from country where code = :code';
+        $query = Yii::$app->db->createCommand($sql);
+        $query->bindValue(':code', 'AU');
+        $oilRateInfo = $query->queryOne();
+        echo $query->getSql();
+        var_dump($oilRateInfo);
+    }
+
+    public function actionAlias()
+    {
+        echo "<pre>";
+        //别名
+        Yii::setAlias('@fpp','ad/sd/er');
+        echo Yii::getAlias('@fpp').'<br>';
+        echo Yii::getAlias('@yii').'<br>';
+        echo Yii::getAlias('@app').'<br>';
+        echo Yii::getAlias('@runtime').'<br>';
+        echo Yii::getAlias('@web').'<br>';
+        echo Yii::getAlias('@webroot').'<br>';
+        echo Yii::getAlias('@npm').'<br>';
+        //var_dump(Yii::$classMap);
+        var_dump(Yii::$container);
+    }
+
+    public function actionDiContainer()
+    {
+        $query = Yii::$app->db->createCommand('select * from country where code = :code')
+            ->bindParam(':code', $code);
+
+        $code = 'AU';
+        $post1 = $query->queryOne();
+
+        $code = 'BR';
+        $post2 = $query->queryOne();
+
+        var_dump($post1);
+        var_dump($post2);
+        exit;
+        return $this->render('page');
     }
 }
